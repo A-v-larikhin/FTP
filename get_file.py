@@ -1,17 +1,15 @@
 import ftplib
-import sys
 
-
-ftp = ftplib.FTP('ftp.zakupki.gov.ru')
-ftp.login('free', 'free')
-
-out_file = './tmp/notification_Sankt-Peterburg_2014010100_2014020100_122.xml.zip'
-ftp_filename = '/fcs_regions/Sankt-Peterburg/notifications/notification_Sankt-Peterburg_2014010100_2014020100_122.xml.zip'
-
-try:
-    with open(out_file, 'wb') as local_file:
-        ftp.retrbinary('RETR ' + ftp_filename, local_file.write)
-except ftplib.error_perm:
-    pass
-
-ftp.quit()
+def get_ftp_file(file_list):
+    ftp = ftplib.FTP('ftp.zakupki.gov.ru')
+    ftp.login('free', 'free')
+    try:
+        with open(file_list[1], 'wb') as local_file:
+            ftp.retrbinary('RETR ' + file_list[0], local_file.write)
+    except ftplib.error_perm:
+        with open ('./log/log.txt', 'a') as log_f:
+            log_f.write(file_list[0])
+        log_f.close()
+        pass
+    ftp.quit()
+    return file_list[1]
