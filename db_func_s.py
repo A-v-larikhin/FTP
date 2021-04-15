@@ -8,12 +8,7 @@ def connect_to_db():
         host='192.168.10.61'
     )
     return con
-# ID CHAR(50),
-# PURCHASENUMBER CHAR(50),
-# HREF TEXT,
-# MAXPRICE
 
-#con = connect_to_db()
 
 def db_insert(con, not_id, not_purch_num, not_href, not_price):
     cur = con.cursor()

@@ -7,7 +7,7 @@ ftp.login('free', 'free')
 list = ftp.nlst('/fcs_regions/Sankt-Peterburg/currMonth')
 f = open('./txt/Sankt-Peterburg-currMonth.txt', 'w')
 for i in list:
-    f.write(i+'\n')
+    f.write(i + '\n')
     print(i)
 f.close()
 
